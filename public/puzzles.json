@@ -1,0 +1,126 @@
+[
+  {
+    "id": "dog-breeds",
+    "words": ["Beagle", "Pug", "Collie", "Husky", "Terrier"],
+    "category": {
+      "canonical": "Dog breeds",
+      "aliases": ["Dog breed", "Breeds of dogs"]
+    }
+  },
+  {
+    "id": "bread-after",
+    "words": ["basket", "winner", "line", "board", "crumb"],
+    "category": {
+      "canonical": "Words after bread",
+      "aliases": ["Bread ___"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "bread",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "types-of-birds",
+    "words": ["sparrow", "eagle", "owl", "pigeon", "heron"],
+    "category": {
+      "canonical": "Types of birds",
+      "aliases": ["Kinds of birds"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "bird"
+      }
+    }
+  },
+  {
+    "id": "starts-re",
+    "words": ["redo", "replay", "remix", "rebuild", "resend"],
+    "category": {
+      "canonical": "Words starting with re",
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "re"
+      }
+    }
+  },
+  {
+    "id": "ends-tion",
+    "words": ["action", "station", "nation", "fiction", "motion"],
+    "category": {
+      "canonical": "Words ending with tion",
+      "matcher": {
+        "kind": "ENDS_WITH",
+        "token": "tion"
+      }
+    }
+  },
+  {
+    "id": "sun-after",
+    "words": ["rise", "set", "burn", "flower", "light"],
+    "category": {
+      "canonical": "Words after sun",
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "sun"
+      }
+    }
+  },
+  {
+    "id": "types-of-cheese",
+    "words": ["cheddar", "brie", "gouda", "feta", "mozzarella"],
+    "category": {
+      "canonical": "Types of cheese",
+      "aliases": ["Kinds of cheese"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "cheese"
+      }
+    }
+  },
+  {
+    "id": "starts-un",
+    "words": ["undo", "unlock", "unwind", "unplug", "unwrap"],
+    "category": {
+      "canonical": "Words starting with un",
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "un"
+      }
+    }
+  },
+  {
+    "id": "ends-ment",
+    "words": ["payment", "movement", "shipment", "segment", "statement"],
+    "category": {
+      "canonical": "Words ending with ment",
+      "matcher": {
+        "kind": "ENDS_WITH",
+        "token": "ment"
+      }
+    }
+  },
+  {
+    "id": "noble-gases",
+    "words": ["helium", "neon", "argon", "krypton", "xenon"],
+    "category": {
+      "canonical": "Noble gases",
+      "aliases": ["Noble gas", "Inert gases"]
+    }
+  },
+  {
+    "id": "weekdays",
+    "words": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "category": {
+      "canonical": "Weekdays",
+      "aliases": ["Workdays", "Week days"]
+    }
+  },
+  {
+    "id": "greek-letters",
+    "words": ["alpha", "beta", "gamma", "delta", "epsilon"],
+    "category": {
+      "canonical": "Greek letters",
+      "aliases": ["Greek alphabet letters"]
+    }
+  }
+]
