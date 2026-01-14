@@ -1,6 +1,9 @@
 import type { Puzzle } from './types'
 
-const PUZZLES_URL = new URL('puzzles.json', import.meta.env.BASE_URL).toString()
+const PUZZLES_URL = new URL(
+  'puzzles.json',
+  `${window.location.origin}${import.meta.env.BASE_URL}`,
+).toString()
 
 export async function loadPuzzles(): Promise<Puzzle[]> {
   const response = await fetch(PUZZLES_URL)
