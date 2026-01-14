@@ -43,13 +43,12 @@ function App() {
   }, [])
 
   useEffect(() => {
+    isMounted.current = true
+    startNewPuzzle()
+
     return () => {
       isMounted.current = false
     }
-  }, [])
-
-  useEffect(() => {
-    startNewPuzzle()
   }, [startNewPuzzle])
 
   const words = puzzle?.words ?? []
