@@ -67,6 +67,7 @@ function App() {
         : 'playing'
   const statusCategory = puzzle && (isWin || isLose) ? puzzle.category.canonical : null
   const nextButtonClass = isWin ? 'primary' : 'secondary'
+  const canLoadNext = !loading && !error
 
   let statusTitle = 'Ready when you are'
   let statusMessage = 'Make a guess when the words start to click.'
@@ -121,6 +122,16 @@ function App() {
         <p className="app-subtitle">
           Reveal words, take a guess, and see if you can name the group.
         </p>
+        <div className="app-hero-controls">
+          <button
+            className={nextButtonClass}
+            type="button"
+            onClick={() => startNewPuzzle(puzzle?.id)}
+            disabled={!canLoadNext}
+          >
+            Next Puzzle
+          </button>
+        </div>
       </header>
 
       <section className="game-card">
@@ -180,14 +191,6 @@ function App() {
                   disabled={!puzzle || loading || roundOver}
                 >
                   Submit
-                </button>
-                <button
-                  className={nextButtonClass}
-                  type="button"
-                  onClick={() => startNewPuzzle(puzzle?.id)}
-                  disabled={loading}
-                >
-                  Next Puzzle
                 </button>
               </div>
             </form>
