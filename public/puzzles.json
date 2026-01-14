@@ -4,7 +4,12 @@
     "words": ["Beagle", "Pug", "Collie", "Husky", "Terrier"],
     "category": {
       "canonical": "Dog breeds",
-      "aliases": ["Dog breed", "Breeds of dogs"]
+      "aliases": ["Dog breed", "Breeds of dogs", "Types of dogs"],
+      "concepts": ["dog"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "dog breeds"
+      }
     }
   },
   {

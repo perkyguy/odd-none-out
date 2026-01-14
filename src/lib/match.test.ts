@@ -4,12 +4,39 @@ import { isMatch } from './match'
 import type { Category } from './types'
 
 describe('isMatch', () => {
-  it('matches dog breed vs breeds of dogs', () => {
+  it('accepts head concept guesses from canonical and aliases', () => {
     const category: Category = {
-      canonical: 'Breeds of dogs',
+      canonical: 'Dog breeds',
+      aliases: ['breeds of dogs', 'dog breed', 'types of dogs'],
     }
 
-    expect(isMatch('Dog breed', category)).toBe(true)
+    expect(isMatch('dog', category)).toBe(true)
+    expect(isMatch('dogs', category)).toBe(true)
+    expect(isMatch('types', category)).toBe(false)
+    expect(isMatch('words', category)).toBe(false)
+  })
+
+  it('requires multiple concept hits for multi-token guesses', () => {
+    const category: Category = {
+      canonical: 'Dog breeds',
+      aliases: ['breeds of dogs', 'dog breed'],
+    }
+
+    expect(isMatch('dog thing', category)).toBe(false)
+    expect(isMatch('dog breed', category)).toBe(true)
+  })
+
+  it('accepts partial token matches for types of matchers', () => {
+    const category: Category = {
+      canonical: 'Dog breeds',
+      matcher: {
+        kind: 'TYPES_OF',
+        token: 'dog breeds',
+      },
+    }
+
+    expect(isMatch('dog', category)).toBe(true)
+    expect(isMatch('breed', category)).toBe(true)
   })
 
   it('accepts token alone for words after matchers', () => {

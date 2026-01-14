@@ -14,6 +14,30 @@ const STOPWORDS = new Set([
   'things',
 ])
 
+const BLOCKED_CONCEPT_TOKENS = new Set([
+  'thing',
+  'things',
+  'word',
+  'words',
+  'type',
+  'types',
+  'kind',
+  'kinds',
+  'after',
+  'before',
+  'starts',
+  'start',
+  'starting',
+  'ends',
+  'end',
+  'ending',
+  'with',
+  'come',
+  'comes',
+  'that',
+  'which',
+])
+
 const PUNCTUATION_REGEX = /[^a-z0-9]+/g
 
 export function normalize(text: string): string {
@@ -48,12 +72,15 @@ export function isMatch(guess: string, category: Category): boolean {
   }
 
   if (category.matcher) {
-    return matcherPatterns(category.matcher).some(
+    const matcherHit = matcherPatterns(category.matcher).some(
       (pattern) => normalize(pattern) === normalizedGuess,
     )
+    if (matcherHit) {
+      return true
+    }
   }
 
-  return false
+  return conceptFallbackMatch(guess, category)
 }
 
 function singularize(token: string): string {
@@ -73,25 +100,89 @@ function singularize(token: string): string {
   return token
 }
 
+function tokenizeNormalized(text: string): string[] {
+  return text.split(/\s+/).filter(Boolean)
+}
+
+function filterConceptTokens(tokens: string[]): string[] {
+  return tokens.filter(
+    (token) => token.length >= 3 && !BLOCKED_CONCEPT_TOKENS.has(token),
+  )
+}
+
+function conceptTokensFromText(text: string): string[] {
+  const normalized = normalize(text)
+  if (!normalized) {
+    return []
+  }
+  return filterConceptTokens(tokenizeNormalized(normalized))
+}
+
+function conceptFallbackMatch(guess: string, category: Category): boolean {
+  const normalizedGuess = normalize(guess)
+  const guessTokens = tokenizeNormalized(normalizedGuess)
+  if (!guessTokens.length) {
+    return false
+  }
+
+  const filteredGuessTokens = filterConceptTokens(guessTokens)
+  if (!filteredGuessTokens.length) {
+    return false
+  }
+
+  const categoryTokens = new Set<string>()
+  conceptTokensFromText(category.canonical).forEach((token) =>
+    categoryTokens.add(token),
+  )
+  category.aliases?.forEach((alias) => {
+    conceptTokensFromText(alias).forEach((token) => categoryTokens.add(token))
+  })
+  category.concepts?.forEach((concept) => {
+    conceptTokensFromText(concept).forEach((token) => categoryTokens.add(token))
+  })
+
+  if (!categoryTokens.size) {
+    return false
+  }
+
+  const uniqueGuessTokens = new Set(filteredGuessTokens)
+  let hits = 0
+  uniqueGuessTokens.forEach((token) => {
+    if (categoryTokens.has(token)) {
+      hits += 1
+    }
+  })
+
+  const requiredHits = guessTokens.length >= 2 ? 2 : 1
+  return hits >= requiredHits
+}
+
 function matcherPatterns(matcher: CategoryMatcher): string[] {
   switch (matcher.kind) {
     case 'WORDS_AFTER': {
-      const patterns = [`words after ${matcher.token}`, `after ${matcher.token}`]
+      const patterns = new Set([
+        `words after ${matcher.token}`,
+        `after ${matcher.token}`,
+      ])
       if (matcher.acceptTokenAlone) {
-        patterns.push(matcher.token)
+        patterns.add(matcher.token)
       }
-      return patterns
+      return Array.from(patterns)
     }
     case 'TYPES_OF': {
-      const patterns = [
+      const patterns = new Set([
         `types of ${matcher.token}`,
         `kinds of ${matcher.token}`,
         `${matcher.token} types`,
-      ]
-      if (matcher.acceptTokenAlone) {
-        patterns.push(matcher.token)
+      ])
+      const acceptTokenAlone = matcher.acceptTokenAlone ?? true
+      if (acceptTokenAlone) {
+        patterns.add(matcher.token)
+        conceptTokensFromText(matcher.token).forEach((token) =>
+          patterns.add(token),
+        )
       }
-      return patterns
+      return Array.from(patterns)
     }
     case 'STARTS_WITH':
       return [
