@@ -84,25 +84,28 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">
+      <header className="app-hero">
         <div className="app-brand">
           <span className="brand-mark" aria-hidden="true" />
-          <span>Odd None Out</span>
+          <div className="brand-text">
+            <h1 className="brand-title">Odd None Out</h1>
+            <p className="app-tagline">Spot the hidden category.</p>
+          </div>
         </div>
-        <h1>Spot the hidden category.</h1>
         <p className="app-subtitle">
           Reveal words, take a guess, and see if you can name the group.
         </p>
       </header>
 
-      <main className="app-main">
-        <section className="board">
-          <div className="board-top">
-            <h2>Word lineup</h2>
-            <span className="board-count">
-              {Math.min(revealedCount, 5)} / 5 revealed
-            </span>
-          </div>
+      <section className="game-card">
+        <main className="app-main">
+          <section className="board">
+            <div className="board-top">
+              <h2>Word lineup</h2>
+              <span className="board-count">
+                {Math.min(revealedCount, 5)} / 5 revealed
+              </span>
+            </div>
 
           {loading && <p className="status neutral">Loading puzzle...</p>}
           {error && <p className="status error">{error}</p>}
@@ -147,39 +150,39 @@ function App() {
           )}
         </section>
 
-        <section className="guess-panel">
-          <h2>Guess the category</h2>
-          <form className="guess-form" onSubmit={handleSubmit}>
-            <label className="guess-label" htmlFor="guess">
-              Your guess
-            </label>
-            <div className="guess-controls">
-              <input
-                id="guess"
-                type="text"
-                name="guess"
-                value={guess}
-                onChange={(event) => setGuess(event.target.value)}
-                placeholder="e.g. Words after bread"
-                disabled={!puzzle || loading || roundOver}
-              />
-              <button
-                className="primary"
-                type="submit"
-                disabled={!puzzle || loading || roundOver}
-              >
-                Submit
-              </button>
-              <button
-                className="secondary"
-                type="button"
-                onClick={() => startNewPuzzle(puzzle?.id)}
-                disabled={loading}
-              >
-                Next Puzzle
-              </button>
-            </div>
-          </form>
+          <section className="guess-panel">
+            <h2>Guess the category</h2>
+            <form className="guess-form" onSubmit={handleSubmit}>
+              <label className="guess-label" htmlFor="guess">
+                Your guess
+              </label>
+              <div className="guess-controls">
+                <input
+                  id="guess"
+                  type="text"
+                  name="guess"
+                  value={guess}
+                  onChange={(event) => setGuess(event.target.value)}
+                  placeholder="e.g. Words after bread"
+                  disabled={!puzzle || loading || roundOver}
+                />
+                <button
+                  className="primary"
+                  type="submit"
+                  disabled={!puzzle || loading || roundOver}
+                >
+                  Submit
+                </button>
+                <button
+                  className="secondary"
+                  type="button"
+                  onClick={() => startNewPuzzle(puzzle?.id)}
+                  disabled={loading}
+                >
+                  Next Puzzle
+                </button>
+              </div>
+            </form>
 
           <div className="guess-actions">
             <p className="hint">
@@ -187,31 +190,32 @@ function App() {
             </p>
           </div>
 
-          {isDev && debugInfo && (
-            <div className="debug-panel">
-              <h3>Debug</h3>
-              <dl className="debug-list">
-                <dt>Reason</dt>
-                <dd>{debugInfo.reason}</dd>
-                <dt>Normalized</dt>
-                <dd>{debugInfo.normalizedGuess || '-'}</dd>
-                <dt>Guess tokens</dt>
-                <dd>{debugInfo.filteredGuessTokens.join(', ') || '-'}</dd>
-                <dt>Category tokens</dt>
-                <dd>{debugInfo.categoryTokens.join(', ') || '-'}</dd>
-                <dt>Hit count</dt>
-                <dd>
-                  {debugInfo.hitCount ?? 0} / {debugInfo.requiredHits ?? 0}
-                </dd>
-                <dt>Matcher patterns</dt>
-                <dd>
-                  {debugInfo.matcherPatterns?.join(', ') || '-'}
-                </dd>
-              </dl>
-            </div>
-          )}
-        </section>
-      </main>
+            {isDev && debugInfo && (
+              <div className="debug-panel">
+                <h3>Debug</h3>
+                <dl className="debug-list">
+                  <dt>Reason</dt>
+                  <dd>{debugInfo.reason}</dd>
+                  <dt>Normalized</dt>
+                  <dd>{debugInfo.normalizedGuess || '-'}</dd>
+                  <dt>Guess tokens</dt>
+                  <dd>{debugInfo.filteredGuessTokens.join(', ') || '-'}</dd>
+                  <dt>Category tokens</dt>
+                  <dd>{debugInfo.categoryTokens.join(', ') || '-'}</dd>
+                  <dt>Hit count</dt>
+                  <dd>
+                    {debugInfo.hitCount ?? 0} / {debugInfo.requiredHits ?? 0}
+                  </dd>
+                  <dt>Matcher patterns</dt>
+                  <dd>
+                    {debugInfo.matcherPatterns?.join(', ') || '-'}
+                  </dd>
+                </dl>
+              </div>
+            )}
+          </section>
+        </main>
+      </section>
     </div>
   )
 }
