@@ -13,15 +13,15 @@ export function IconMark({ className }: IconMarkProps) {
       role="img"
       aria-hidden="true"
     >
-      <circle cx="10" cy="24" r="5" fill="currentColor" />
-      <circle cx="22" cy="24" r="5" fill="currentColor" />
-      <circle cx="34" cy="24" r="5" fill="currentColor" />
+      <circle cx="14" cy="14" r="5" fill="currentColor" />
+      <circle cx="34" cy="14" r="5" fill="currentColor" />
+      <circle cx="14" cy="34" r="5" fill="currentColor" />
       <circle
-        cx="44"
-        cy="24"
-        r="5"
+        cx="34"
+        cy="34"
+        r="6.5"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="2.5"
       />
     </svg>
   )
