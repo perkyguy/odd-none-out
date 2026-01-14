@@ -55,7 +55,31 @@ function App() {
   const words = puzzle?.words ?? []
   const allRevealed = puzzle ? revealedCount >= puzzle.words.length : false
   const roundOver = status === 'correct' || (status === 'incorrect' && allRevealed)
-  const nextButtonClass = roundOver ? 'primary' : 'secondary'
+  const isWin = status === 'correct'
+  const isLose = status === 'incorrect' && allRevealed
+  const isWarning = status === 'incorrect' && !allRevealed
+  const statusVariant = isWin
+    ? 'win'
+    : isLose
+      ? 'lose'
+      : isWarning
+        ? 'warning'
+        : 'playing'
+  const statusCategory = puzzle && (isWin || isLose) ? puzzle.category.canonical : null
+  const nextButtonClass = isWin ? 'primary' : 'secondary'
+
+  let statusTitle = 'Ready when you are'
+  let statusMessage = 'Make a guess when the words start to click.'
+  if (isWin) {
+    statusTitle = 'You solved it'
+    statusMessage = 'Nicely spotted. Ready for the next one?'
+  } else if (isLose) {
+    statusTitle = 'Round over'
+    statusMessage = 'No worries. Try a fresh puzzle when you want.'
+  } else if (isWarning) {
+    statusTitle = 'Not quite'
+    statusMessage = 'Another word appears to help.'
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -91,7 +115,7 @@ function App() {
           <IconMark className="brand-icon" />
           <div className="brand-text">
             <h1 className="brand-title">Odd None Out</h1>
-            <p className="app-tagline">Spot the hidden category.</p>
+            <p className="app-tagline">A cozy category puzzle.</p>
           </div>
         </div>
         <p className="app-subtitle">
@@ -109,57 +133,30 @@ function App() {
               </span>
             </div>
 
-          {loading && <p className="status neutral">Loading puzzle...</p>}
-          {error && <p className="status error">{error}</p>}
+            {loading && <p className="status status--neutral">Loading puzzle...</p>}
+            {error && <p className="status status--error">{error}</p>}
 
-          {!loading && !error && (
-            <div className="word-grid">
-              {words.map((word, index) => {
-                const revealed = index < revealedCount || status === 'correct'
-                return (
-                  <div
-                    key={`${word}-${index}`}
-                    className={`word-card ${
-                      revealed ? 'revealed' : 'hidden'
-                    }`}
-                    style={{ animationDelay: `${index * 70}ms` }}
-                  >
-                    {revealed ? word : '-----'}
-                  </div>
-                )
-              })}
-            </div>
-          )}
+            {!loading && !error && (
+              <div className="word-grid">
+                {words.map((word, index) => {
+                  const revealed = index < revealedCount || status === 'correct'
+                  return (
+                    <div
+                      key={`${word}-${index}`}
+                      className={`word-card ${
+                        revealed ? 'revealed' : 'hidden'
+                      }`}
+                      style={{ animationDelay: `${index * 70}ms` }}
+                    >
+                      {revealed ? word : '-----'}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </section>
 
-          {!loading && !error && status === 'correct' && puzzle && (
-            <div className="status status--win">
-              <span className="status-badge status-badge--win">You got it!</span>
-              <p className="status-text">
-                <strong>Correct.</strong> The category is{' '}
-                <span className="category-name">{puzzle.category.canonical}</span>.
-              </p>
-            </div>
-          )}
-
-          {!loading && !error && status === 'incorrect' && allRevealed && puzzle && (
-            <div className="status status--lose">
-              <span className="status-badge status-badge--lose">Round over</span>
-              <p className="status-text">
-                <strong>Out of guesses.</strong> The category was{' '}
-                <span className="category-name">{puzzle.category.canonical}</span>.
-              </p>
-            </div>
-          )}
-
-          {!loading && !error && status === 'incorrect' && !allRevealed && (
-            <div className="status status--playing">
-              <span className="status-badge status-badge--playing">
-                Not quite
-              </span>
-              <p className="status-text">Revealing the next word.</p>
-            </div>
-          )}
-        </section>
+          <div className="pencil-divider" aria-hidden="true" />
 
           <section className="guess-panel">
             <h2>Guess the category</h2>
@@ -184,22 +181,22 @@ function App() {
                 >
                   Submit
                 </button>
-              <button
-                className={nextButtonClass}
-                type="button"
-                onClick={() => startNewPuzzle(puzzle?.id)}
-                disabled={loading}
-              >
-                Next Puzzle
+                <button
+                  className={nextButtonClass}
+                  type="button"
+                  onClick={() => startNewPuzzle(puzzle?.id)}
+                  disabled={loading}
+                >
+                  Next Puzzle
                 </button>
               </div>
             </form>
 
-          <div className="guess-actions">
-            <p className="hint">
-              Every miss reveals one more word. Keep narrowing the category.
-            </p>
-          </div>
+            <div className="guess-actions">
+              <p className="hint">
+                Every miss reveals one more word. Keep narrowing the category.
+              </p>
+            </div>
 
             {isDev && debugInfo && (
               <div className="debug-panel">
@@ -226,6 +223,21 @@ function App() {
             )}
           </section>
         </main>
+
+        {!loading && !error && (
+          <section className={`status-panel status-panel--${statusVariant}`}>
+            <div className="status-header">
+              <span className="status-chip">{statusTitle}</span>
+              {statusCategory && (
+                <span className="status-category-label">Category</span>
+              )}
+            </div>
+            {statusCategory && (
+              <p className="status-category">{statusCategory}</p>
+            )}
+            <p className="status-text">{statusMessage}</p>
+          </section>
+        )}
       </section>
     </div>
   )
