@@ -412,5 +412,536 @@
       "canonical": "Words that sound like numbers",
       "aliases": ["Number homophones", "Words that sound like a number", "Number sound-alikes", "Number-sounding words", "Homophones of numbers"]
     }
+  },
+  {
+    "id": "things-you-can-fold-01",
+    "difficulty": "easy",
+    "words": ["paper", "map", "towel", "chair", "blanket"],
+    "category": {
+      "canonical": "Things you can fold",
+      "aliases": ["Foldable things", "Things that fold", "Items you can fold", "Things that can be folded", "Fold-up items"]
+    }
+  },
+  {
+    "id": "things-you-can-crack-01",
+    "difficulty": "easy",
+    "words": ["egg", "code", "joke", "knuckles", "safe"],
+    "category": {
+      "canonical": "Things you can crack",
+      "aliases": ["Crackable things", "Things that crack", "Crack a ___", "Things to crack", "Things you can crack"]
+    }
+  },
+  {
+    "id": "things-you-can-draw-01",
+    "difficulty": "easy",
+    "words": ["card", "picture", "bath", "line", "curtain"],
+    "category": {
+      "canonical": "Things you can draw",
+      "aliases": ["Draw a ___", "Things you can draw", "Things you can draw out", "Things you can pull/draw", "Drawn things"]
+    }
+  },
+  {
+    "id": "sound-words-01",
+    "difficulty": "easy",
+    "words": ["buzz", "click", "bang", "hiss", "pop"],
+    "category": {
+      "canonical": "Sound words",
+      "aliases": ["Onomatopoeia", "Sound effect words", "Words that imitate sounds", "Sound-alike words", "Sound mimics"]
+    }
+  },
+  {
+    "id": "book-parts-01",
+    "difficulty": "easy",
+    "words": ["cover", "spine", "page", "chapter", "index"],
+    "category": {
+      "canonical": "Parts of a book",
+      "aliases": ["Book parts", "Book sections", "Book anatomy", "Pieces of a book", "Book components"]
+    }
+  },
+  {
+    "id": "things-you-can-peel-01",
+    "difficulty": "easy",
+    "words": ["orange", "banana", "potato", "sticker", "paint"],
+    "category": {
+      "canonical": "Things you can peel",
+      "aliases": ["Peelable things", "Things that peel", "Things you can peel off", "Peel a ___", "Things to peel"]
+    }
+  },
+  {
+    "id": "things-you-can-cast-01",
+    "difficulty": "easy",
+    "words": ["vote", "spell", "line", "shadow", "net"],
+    "category": {
+      "canonical": "Things you can cast",
+      "aliases": ["Cast a ___", "Things you can cast out", "Casting things", "Things to cast", "Things you can cast"]
+    }
+  },
+  {
+    "id": "things-with-strings-01",
+    "difficulty": "easy",
+    "words": ["guitar", "violin", "harp", "kite", "puppet"],
+    "category": {
+      "canonical": "Things with strings",
+      "aliases": ["Stringed things", "Things that use strings", "String items", "Things on strings", "Things with strings"]
+    }
+  },
+  {
+    "id": "shoe-parts-01",
+    "difficulty": "easy",
+    "words": ["sole", "heel", "lace", "tongue", "toe"],
+    "category": {
+      "canonical": "Parts of a shoe",
+      "aliases": ["Shoe parts", "Parts of shoes", "Shoe anatomy", "Shoe pieces", "Shoe components"]
+    }
+  },
+  {
+    "id": "tree-parts-01",
+    "difficulty": "easy",
+    "words": ["root", "trunk", "branch", "leaf", "bark"],
+    "category": {
+      "canonical": "Parts of a tree",
+      "aliases": ["Tree parts", "Parts of trees", "Tree anatomy", "Tree pieces", "Tree components"]
+    }
+  },
+  {
+    "id": "things-that-open-01",
+    "difficulty": "easy",
+    "words": ["door", "book", "umbrella", "flower", "zipper"],
+    "category": {
+      "canonical": "Things that open",
+      "aliases": ["Things you can open", "Openable things", "Things that open up", "Things that unfold", "Things that open"]
+    }
+  },
+  {
+    "id": "things-you-can-charge-01",
+    "difficulty": "easy",
+    "words": ["phone", "battery", "card", "rent", "admission"],
+    "category": {
+      "canonical": "Things you can charge",
+      "aliases": ["Charge a ___", "Things to charge", "Chargeable things", "Things that get charged", "Things you can charge for"]
+    }
+  },
+  {
+    "id": "dance-styles-01",
+    "difficulty": "easy",
+    "words": ["tango", "waltz", "salsa", "shuffle", "twist"],
+    "category": {
+      "canonical": "Dance styles",
+      "aliases": ["Dance types", "Kinds of dances", "Dance names", "Dance moves", "Dance styles"]
+    }
+  },
+  {
+    "id": "things-you-can-clip-01",
+    "difficulty": "easy",
+    "words": ["coupon", "ticket", "hair", "hedge", "newspaper"],
+    "category": {
+      "canonical": "Things you can clip",
+      "aliases": ["Clip a ___", "Clippable things", "Things to clip", "Things you can clip off", "Things you can clip"]
+    }
+  },
+  {
+    "id": "things-you-can-plant-01",
+    "difficulty": "easy",
+    "words": ["seed", "tree", "flag", "idea", "stake"],
+    "category": {
+      "canonical": "Things you can plant",
+      "aliases": ["Plant a ___", "Things to plant", "Plantable things", "Things you can set/plant", "Things you can plant"]
+    }
+  },
+  {
+    "id": "words-after-paper-01",
+    "difficulty": "medium",
+    "words": ["clip", "plane", "trail", "work", "weight"],
+    "category": {
+      "canonical": "Words after paper",
+      "aliases": ["Paper ___", "Words that follow paper", "Paper compounds", "Words after paper", "Paper word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "paper",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-star-01",
+    "difficulty": "medium",
+    "words": ["fish", "light", "dust", "gate", "board"],
+    "category": {
+      "canonical": "Words after star",
+      "aliases": ["Star ___", "Words that follow star", "Star compounds", "Words after star", "Star word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "star",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-rain-01",
+    "difficulty": "medium",
+    "words": ["bow", "coat", "storm", "check", "forest"],
+    "category": {
+      "canonical": "Words after rain",
+      "aliases": ["Rain ___", "Words that follow rain", "Rain compounds", "Words after rain", "Rain word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "rain",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-fire-01",
+    "difficulty": "medium",
+    "words": ["place", "fly", "man", "works", "wood"],
+    "category": {
+      "canonical": "Words after fire",
+      "aliases": ["Fire ___", "Words that follow fire", "Fire compounds", "Words after fire", "Fire word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "fire",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-silver-01",
+    "difficulty": "medium",
+    "words": ["lining", "bullet", "screen", "ware", "fish"],
+    "category": {
+      "canonical": "Words after silver",
+      "aliases": ["Silver ___", "Words that follow silver", "Silver compounds", "Words after silver", "Silver word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "silver",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-night-01",
+    "difficulty": "medium",
+    "words": ["club", "fall", "life", "cap", "light"],
+    "category": {
+      "canonical": "Words after night",
+      "aliases": ["Night ___", "Words that follow night", "Night compounds", "Words after night", "Night word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "night",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-light-01",
+    "difficulty": "medium",
+    "words": ["house", "bulb", "year", "switch", "weight"],
+    "category": {
+      "canonical": "Words after light",
+      "aliases": ["Light ___", "Words that follow light", "Light compounds", "Words after light", "Light word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "light",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-proof-01",
+    "difficulty": "medium",
+    "words": ["water", "fire", "bullet", "sound", "child"],
+    "category": {
+      "canonical": "Words after proof",
+      "aliases": ["Proof ___", "Words that follow proof", "Proof compounds", "Words after proof", "Proof word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "proof",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "words-after-line-01",
+    "difficulty": "medium",
+    "words": ["hair", "out", "head", "guide", "sky"],
+    "category": {
+      "canonical": "Words after line",
+      "aliases": ["Line ___", "Words that follow line", "Line compounds", "Words after line", "Line word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "line",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "starts-with-tri-01",
+    "difficulty": "medium",
+    "words": ["triangle", "trident", "tripod", "tricycle", "trilogy"],
+    "category": {
+      "canonical": "Words starting with tri",
+      "aliases": ["Starts with tri", "Tri- words", "Words that start with tri", "Beginning with tri", "Tri words"],
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "tri"
+      }
+    }
+  },
+  {
+    "id": "starts-with-sub-01",
+    "difficulty": "medium",
+    "words": ["subway", "submerge", "subtext", "subtitle", "subzero"],
+    "category": {
+      "canonical": "Words starting with sub",
+      "aliases": ["Starts with sub", "Sub- words", "Words that start with sub", "Beginning with sub", "Sub words"],
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "sub"
+      }
+    }
+  },
+  {
+    "id": "starts-with-gl-01",
+    "difficulty": "medium",
+    "words": ["glow", "glide", "glove", "glitter", "glance"],
+    "category": {
+      "canonical": "Words starting with gl",
+      "aliases": ["Starts with gl", "Gl- words", "Words that start with gl", "Beginning with gl", "Gl words"],
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "gl"
+      }
+    }
+  },
+  {
+    "id": "starts-with-mis-01",
+    "difficulty": "medium",
+    "words": ["misread", "misplace", "mislead", "misprint", "mistake"],
+    "category": {
+      "canonical": "Words starting with mis",
+      "aliases": ["Starts with mis", "Mis- words", "Words that start with mis", "Beginning with mis", "Mis words"],
+      "matcher": {
+        "kind": "STARTS_WITH",
+        "token": "mis"
+      }
+    }
+  },
+  {
+    "id": "ends-with-ship-01",
+    "difficulty": "medium",
+    "words": ["friendship", "leadership", "ownership", "courtship", "membership"],
+    "category": {
+      "canonical": "Words ending with ship",
+      "aliases": ["Ends with ship", "Words ending in ship", "Ship-ending words", "Words that end with ship", "Ending with ship"],
+      "matcher": {
+        "kind": "ENDS_WITH",
+        "token": "ship"
+      }
+    }
+  },
+  {
+    "id": "ends-with-less-01",
+    "difficulty": "medium",
+    "words": ["careless", "fearless", "wireless", "endless", "selfless"],
+    "category": {
+      "canonical": "Words ending with less",
+      "aliases": ["Ends with less", "Words ending in less", "Less-ending words", "Words that end with less", "Ending with less"],
+      "matcher": {
+        "kind": "ENDS_WITH",
+        "token": "less"
+      }
+    }
+  },
+  {
+    "id": "ends-with-meter-01",
+    "difficulty": "medium",
+    "words": ["thermometer", "speedometer", "barometer", "odometer", "altimeter"],
+    "category": {
+      "canonical": "Words ending with meter",
+      "aliases": ["Ends with meter", "Words ending in meter", "Meter-ending words", "Words that end with meter", "Ending with meter"],
+      "matcher": {
+        "kind": "ENDS_WITH",
+        "token": "meter"
+      }
+    }
+  },
+  {
+    "id": "punctuation-marks-01",
+    "difficulty": "medium",
+    "words": ["comma", "period", "colon", "dash", "slash"],
+    "category": {
+      "canonical": "Punctuation marks",
+      "aliases": ["Punctuation", "Punctuation symbols", "Punctuation characters", "Punctuation marks", "Writing punctuation"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "punctuation marks"
+      }
+    }
+  },
+  {
+    "id": "cloud-types-01",
+    "difficulty": "medium",
+    "words": ["cirrus", "cumulus", "stratus", "nimbus", "cumulonimbus"],
+    "category": {
+      "canonical": "Types of clouds",
+      "aliases": ["Cloud types", "Kinds of clouds", "Cloud varieties", "Cloud names", "Cloud kinds"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "clouds"
+      }
+    }
+  },
+  {
+    "id": "poem-forms-01",
+    "difficulty": "medium",
+    "words": ["haiku", "sonnet", "limerick", "ode", "epic"],
+    "category": {
+      "canonical": "Poem forms",
+      "aliases": ["Poetry forms", "Types of poems", "Poem types", "Poetry types", "Poem styles"]
+    }
+  },
+  {
+    "id": "letter-removed-first-01",
+    "difficulty": "medium",
+    "words": ["plate", "stone", "smile", "crate", "plane"],
+    "category": {
+      "canonical": "Words that become a new word when the first letter is removed",
+      "aliases": ["Drop the first letter", "Words minus first letter", "Remove the first letter", "Words that become new words", "First-letter removal words"]
+    }
+  },
+  {
+    "id": "heteronyms-01",
+    "difficulty": "hard",
+    "words": ["lead", "wind", "bow", "tear", "bass"],
+    "category": {
+      "canonical": "Heteronyms",
+      "aliases": ["Words with two pronunciations", "Same spelling different sounds", "Words pronounced two ways", "Same spelling, different meaning", "Heteronym words"]
+    }
+  },
+  {
+    "id": "ough-sounds-01",
+    "difficulty": "hard",
+    "words": ["though", "through", "rough", "cough", "bough"],
+    "category": {
+      "canonical": "OUGH words with different sounds",
+      "aliases": ["OUGH words", "Words with ough", "Different ough sounds", "Ough pronunciation words", "Words ending with ough"]
+    }
+  },
+  {
+    "id": "silent-b-01",
+    "difficulty": "hard",
+    "words": ["thumb", "climb", "doubt", "subtle", "debt"],
+    "category": {
+      "canonical": "Words with silent B",
+      "aliases": ["Silent B words", "Words with a silent b", "Silent-b words", "B is silent", "Words where b is silent"]
+    }
+  },
+  {
+    "id": "silent-w-01",
+    "difficulty": "hard",
+    "words": ["write", "wrong", "sword", "answer", "two"],
+    "category": {
+      "canonical": "Words with silent W",
+      "aliases": ["Silent W words", "Words with a silent w", "Silent-w words", "W is silent", "Words where w is silent"]
+    }
+  },
+  {
+    "id": "silent-k-01",
+    "difficulty": "hard",
+    "words": ["knee", "knife", "knot", "know", "knock"],
+    "category": {
+      "canonical": "Words with silent K",
+      "aliases": ["Silent K words", "Words with a silent k", "Silent-k words", "K is silent", "Words where k is silent"]
+    }
+  },
+  {
+    "id": "stress-shift-words-01",
+    "difficulty": "hard",
+    "words": ["record", "permit", "object", "present", "project"],
+    "category": {
+      "canonical": "Words that change meaning with stress",
+      "aliases": ["Stress-shift words", "Stress changes meaning", "Noun/verb stress shift", "Words with stress shifts", "Stress-dependent words"]
+    }
+  },
+  {
+    "id": "same-past-present-verbs-01",
+    "difficulty": "hard",
+    "words": ["cut", "hit", "put", "set", "shut"],
+    "category": {
+      "canonical": "Verbs with same present and past tense",
+      "aliases": ["Same present and past verbs", "Verbs with unchanged past", "Irregular verbs without change", "No-change past verbs", "Verbs with identical past tense"]
+    }
+  },
+  {
+    "id": "word-ladder-01",
+    "difficulty": "hard",
+    "words": ["cold", "cord", "card", "ward", "warm"],
+    "category": {
+      "canonical": "One-letter word ladder",
+      "aliases": ["One-letter change chain", "Word ladder", "Words changing one letter", "One-letter steps", "Word chain"]
+    }
+  },
+  {
+    "id": "reverse-words-01",
+    "difficulty": "hard",
+    "words": ["drawer", "stressed", "live", "diaper", "knits"],
+    "category": {
+      "canonical": "Words whose reverse is another word",
+      "aliases": ["Reverse words", "Words that are words backward", "Words with reverse words", "Backward word pairs", "Words whose reverse is a word"]
+    }
+  },
+  {
+    "id": "ph-sound-01",
+    "difficulty": "hard",
+    "words": ["phone", "graph", "trophy", "alphabet", "dolphin"],
+    "category": {
+      "canonical": "Words where ph sounds like f",
+      "aliases": ["Ph sounds like f", "Words with ph = f", "Ph pronunciation words", "Ph words", "Words where ph is f"]
+    }
+  },
+  {
+    "id": "silent-g-01",
+    "difficulty": "hard",
+    "words": ["gnome", "gnat", "gnaw", "sign", "design"],
+    "category": {
+      "canonical": "Words with silent G",
+      "aliases": ["Silent G words", "Words with a silent g", "Silent-g words", "G is silent", "Words where g is silent"]
+    }
+  },
+  {
+    "id": "silent-n-01",
+    "difficulty": "hard",
+    "words": ["autumn", "hymn", "column", "damn", "solemn"],
+    "category": {
+      "canonical": "Words with silent N",
+      "aliases": ["Silent N words", "Words with a silent n", "Silent-n words", "N is silent", "Words where n is silent"]
+    }
+  },
+  {
+    "id": "ch-sounds-like-sh-01",
+    "difficulty": "hard",
+    "words": ["chef", "chalet", "machine", "brochure", "parachute"],
+    "category": {
+      "canonical": "Words where ch sounds like sh",
+      "aliases": ["Ch sounds like sh", "Ch pronounced sh", "French ch words", "Ch pronunciation shift", "Words with ch = sh"]
+    }
+  },
+  {
+    "id": "silent-t-01",
+    "difficulty": "hard",
+    "words": ["castle", "listen", "whistle", "often", "fasten"],
+    "category": {
+      "canonical": "Words with silent T",
+      "aliases": ["Silent T words", "Words with a silent t", "Silent-t words", "T is silent", "Words where t is silent"]
+    }
+  },
+  {
+    "id": "no-repeat-letters-01",
+    "difficulty": "hard",
+    "words": ["brick", "plane", "sword", "chart", "money"],
+    "category": {
+      "canonical": "Words with no repeated letters",
+      "aliases": ["No-repeat letter words", "Words without repeated letters", "Isogram words", "All letters different", "No duplicate letters"]
+    }
   }
 ]
