@@ -21,11 +21,11 @@ body {
   color: var(--ink-primary);
   background:
     radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 55%),
-    radial-gradient(circle at 88% 18%, rgba(233, 223, 209, 0.7) 0%, rgba(233, 223, 209, 0) 60%),
+    radial-gradient(circle at 88% 18%, rgba(246, 220, 231, 0.7) 0%, rgba(246, 220, 231, 0) 60%),
     repeating-linear-gradient(
       0deg,
-      rgba(90, 75, 60, 0.03) 0,
-      rgba(90, 75, 60, 0.03) 1px,
+      rgba(90, 70, 78, 0.03) 0,
+      rgba(90, 70, 78, 0.03) 1px,
       transparent 1px,
       transparent 6px
     ),

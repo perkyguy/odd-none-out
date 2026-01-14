@@ -66,7 +66,7 @@
 .brand-icon {
   width: 2.6rem;
   height: 2.6rem;
-  color: var(--accent-strong);
+  color: currentColor;
 }
 
 .brand-text {
@@ -149,7 +149,7 @@
   background: var(--paper-chip);
   color: var(--ink-primary);
   border: 1px solid var(--paper-border-soft);
-  box-shadow: 0 10px 18px rgba(74, 58, 44, 0.1);
+  box-shadow: 0 10px 18px rgba(58, 47, 53, 0.1);
   transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
 }
 
@@ -240,9 +240,9 @@
 .guess-controls button.primary,
 .app-hero-controls button.primary {
   background: var(--accent);
-  color: #f8f5ef;
+  color: var(--ink-primary);
   border-color: var(--accent-border);
-  box-shadow: 0 10px 16px rgba(74, 58, 44, 0.12);
+  box-shadow: 0 10px 16px rgba(58, 47, 53, 0.12);
 }
 
 .guess-controls button.secondary,
@@ -261,14 +261,14 @@
 .guess-controls button:not(:disabled):hover,
 .guess-actions button:not(:disabled):hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 14px rgba(74, 58, 44, 0.12);
+  box-shadow: 0 8px 14px rgba(58, 47, 53, 0.12);
 }
 
 .guess-controls button:not(:disabled):active,
 .guess-actions button:not(:disabled):active,
 .app-hero-controls button:not(:disabled):active {
   transform: translateY(1px);
-  box-shadow: 0 4px 10px rgba(74, 58, 44, 0.12);
+  box-shadow: 0 4px 10px rgba(58, 47, 53, 0.12);
 }
 
 .guess-actions {

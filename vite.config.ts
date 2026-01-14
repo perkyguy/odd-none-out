@@ -22,8 +22,8 @@ export default defineConfig({
         name: 'Odd none out',
         short_name: 'Odd none out',
         display: 'standalone',
-        background_color: '#f7f2e8',
-        theme_color: '#2f2a26',
+        background_color: '#fff5f8',
+        theme_color: '#3a2f35',
         start_url: '.',
         scope: '.',
         icons: [
