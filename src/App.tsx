@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react'
 
 import './App.css'
-import { isMatch } from './lib/match'
+import { getMatchDebug, isMatch, type MatchDebug } from './lib/match'
 import { loadRandomPuzzle } from './lib/puzzles'
 import type { Puzzle } from './lib/types'
 
 type GuessStatus = 'idle' | 'correct' | 'incorrect'
 
 function App() {
+  const isDev = import.meta.env.DEV
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null)
   const [revealedCount, setRevealedCount] = useState(1)
   const [guess, setGuess] = useState('')
   const [status, setStatus] = useState<GuessStatus>('idle')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [debugInfo, setDebugInfo] = useState<MatchDebug | null>(null)
 
   useEffect(() => {
     let active = true
@@ -30,6 +32,7 @@ function App() {
         setRevealedCount(1)
         setGuess('')
         setStatus('idle')
+        setDebugInfo(null)
       } catch (loadError) {
         if (active) {
           setError('Could not load a puzzle. Try refreshing.')
@@ -61,7 +64,13 @@ function App() {
       return
     }
 
-    if (isMatch(trimmedGuess, puzzle.category)) {
+    const debug = isDev ? getMatchDebug(trimmedGuess, puzzle.category) : null
+    if (isDev) {
+      setDebugInfo(debug)
+    }
+    const matched = debug ? debug.matched : isMatch(trimmedGuess, puzzle.category)
+
+    if (matched) {
       setStatus('correct')
       setRevealedCount(puzzle.words.length)
     } else {
@@ -171,6 +180,30 @@ function App() {
               Incorrect guesses unlock one more word. Keep narrowing the category.
             </p>
           </div>
+
+          {isDev && debugInfo && (
+            <div className="debug-panel">
+              <h3>Debug</h3>
+              <dl className="debug-list">
+                <dt>Reason</dt>
+                <dd>{debugInfo.reason}</dd>
+                <dt>Normalized</dt>
+                <dd>{debugInfo.normalizedGuess || '-'}</dd>
+                <dt>Guess tokens</dt>
+                <dd>{debugInfo.filteredGuessTokens.join(', ') || '-'}</dd>
+                <dt>Category tokens</dt>
+                <dd>{debugInfo.categoryTokens.join(', ') || '-'}</dd>
+                <dt>Hit count</dt>
+                <dd>
+                  {debugInfo.hitCount ?? 0} / {debugInfo.requiredHits ?? 0}
+                </dd>
+                <dt>Matcher patterns</dt>
+                <dd>
+                  {debugInfo.matcherPatterns?.join(', ') || '-'}
+                </dd>
+              </dl>
+            </div>
+          )}
         </section>
       </main>
     </div>

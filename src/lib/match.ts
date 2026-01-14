@@ -1,5 +1,18 @@
 import type { Category, CategoryMatcher } from './types'
 
+export type MatchReason = 'canonical' | 'alias' | 'matcher' | 'concept' | 'none'
+
+export type MatchDebug = {
+  matched: boolean
+  reason: MatchReason
+  normalizedGuess: string
+  filteredGuessTokens: string[]
+  categoryTokens: string[]
+  matcherPatterns?: string[]
+  hitCount?: number
+  requiredHits?: number
+}
+
 const STOPWORDS = new Set([
   'a',
   'an',
@@ -58,29 +71,7 @@ export function normalize(text: string): string {
 }
 
 export function isMatch(guess: string, category: Category): boolean {
-  const normalizedGuess = normalize(guess)
-  if (!normalizedGuess) {
-    return false
-  }
-
-  if (normalizedGuess === normalize(category.canonical)) {
-    return true
-  }
-
-  if (category.aliases?.some((alias) => normalize(alias) === normalizedGuess)) {
-    return true
-  }
-
-  if (category.matcher) {
-    const matcherHit = matcherPatterns(category.matcher).some(
-      (pattern) => normalize(pattern) === normalizedGuess,
-    )
-    if (matcherHit) {
-      return true
-    }
-  }
-
-  return conceptFallbackMatch(guess, category)
+  return getMatchDebug(guess, category).matched
 }
 
 function singularize(token: string): string {
@@ -118,17 +109,62 @@ function conceptTokensFromText(text: string): string[] {
   return filterConceptTokens(tokenizeNormalized(normalized))
 }
 
-function conceptFallbackMatch(guess: string, category: Category): boolean {
+export function getMatchDebug(guess: string, category: Category): MatchDebug {
   const normalizedGuess = normalize(guess)
-  const guessTokens = tokenizeNormalized(normalizedGuess)
-  if (!guessTokens.length) {
-    return false
+  const matcherList = category.matcher
+    ? matcherPatterns(category.matcher)
+    : undefined
+  const conceptDetails = getConceptMatchDetails(normalizedGuess, category)
+
+  let matched = false
+  let reason: MatchReason = 'none'
+
+  if (normalizedGuess) {
+    if (normalizedGuess === normalize(category.canonical)) {
+      matched = true
+      reason = 'canonical'
+    } else if (
+      category.aliases?.some((alias) => normalize(alias) === normalizedGuess)
+    ) {
+      matched = true
+      reason = 'alias'
+    } else if (
+      matcherList?.some((pattern) => normalize(pattern) === normalizedGuess)
+    ) {
+      matched = true
+      reason = 'matcher'
+    } else if (conceptDetails.matched) {
+      matched = true
+      reason = 'concept'
+    }
   }
 
-  const filteredGuessTokens = filterConceptTokens(guessTokens)
-  if (!filteredGuessTokens.length) {
-    return false
+  return {
+    matched,
+    reason,
+    normalizedGuess,
+    filteredGuessTokens: conceptDetails.filteredGuessTokens,
+    categoryTokens: conceptDetails.categoryTokens,
+    matcherPatterns: matcherList,
+    hitCount: conceptDetails.hitCount,
+    requiredHits: conceptDetails.requiredHits,
   }
+}
+
+type ConceptMatchDetails = {
+  matched: boolean
+  filteredGuessTokens: string[]
+  categoryTokens: string[]
+  hitCount: number
+  requiredHits: number
+}
+
+function getConceptMatchDetails(
+  normalizedGuess: string,
+  category: Category,
+): ConceptMatchDetails {
+  const guessTokens = tokenizeNormalized(normalizedGuess)
+  const filteredGuessTokens = filterConceptTokens(guessTokens)
 
   const categoryTokens = new Set<string>()
   conceptTokensFromText(category.canonical).forEach((token) =>
@@ -141,20 +177,27 @@ function conceptFallbackMatch(guess: string, category: Category): boolean {
     conceptTokensFromText(concept).forEach((token) => categoryTokens.add(token))
   })
 
-  if (!categoryTokens.size) {
-    return false
-  }
-
   const uniqueGuessTokens = new Set(filteredGuessTokens)
-  let hits = 0
+  let hitCount = 0
   uniqueGuessTokens.forEach((token) => {
     if (categoryTokens.has(token)) {
-      hits += 1
+      hitCount += 1
     }
   })
 
   const requiredHits = guessTokens.length >= 2 ? 2 : 1
-  return hits >= requiredHits
+  const matched =
+    filteredGuessTokens.length > 0 &&
+    categoryTokens.size > 0 &&
+    hitCount >= requiredHits
+
+  return {
+    matched,
+    filteredGuessTokens,
+    categoryTokens: Array.from(categoryTokens).sort(),
+    hitCount,
+    requiredHits,
+  }
 }
 
 function matcherPatterns(matcher: CategoryMatcher): string[] {

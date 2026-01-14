@@ -219,6 +219,38 @@
   font-size: 0.9rem;
 }
 
+.debug-panel {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px dashed var(--panel-border);
+  background: rgba(255, 249, 240, 0.8);
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+}
+
+.debug-panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.debug-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 0.75rem;
+  margin: 0;
+}
+
+.debug-list dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.debug-list dd {
+  margin: 0;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
