@@ -34,7 +34,10 @@ function App() {
       setDebugInfo(null)
     } catch (loadError) {
       if (isMounted.current) {
-        setError('Could not load a puzzle. Try refreshing.')
+        const offlineMessage = navigator.onLine
+          ? 'Could not load a puzzle. Try refreshing.'
+          : 'You appear to be offline. Connect to load puzzles.'
+        setError(offlineMessage)
       }
     } finally {
       if (isMounted.current) {
