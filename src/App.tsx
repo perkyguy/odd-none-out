@@ -109,9 +109,9 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app${isWin ? ' is-win' : ''}`}>
       <header className="app-hero">
-        <div className="app-brand">
+        <div className="app-brand header-logo">
           <IconMark className="brand-icon" />
           <div className="brand-text">
             <h1 className="brand-title">Odd None Out</h1>
