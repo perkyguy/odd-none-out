@@ -1,33 +1,10 @@
+@import './styles/theme.css';
+
 :root {
-  font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', serif;
+  font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
-
-  --bg-deep: #f2d1b0;
-  --bg-warm: #fbf1e3;
-  --panel: rgba(255, 250, 242, 0.95);
-  --panel-soft: rgba(255, 253, 249, 0.9);
-  --panel-border: rgba(105, 64, 45, 0.16);
-  --panel-shadow: 0 22px 50px rgba(94, 52, 34, 0.14);
-  --card-shadow: 0 26px 60px rgba(94, 52, 34, 0.12);
-  --chip-bg: #fff1df;
-  --chip-muted: #f3d6ba;
-  --ink: #3b271d;
-  --ink-strong: #2a1912;
-  --ink-muted: #6c4a3a;
-  --ink-subtle: #927261;
-  --accent: #f2a36c;
-  --accent-soft: rgba(242, 186, 138, 0.3);
-  --accent-strong: #c76431;
-  --success: #3da072;
-  --success-soft: rgba(86, 190, 135, 0.2);
-  --success-border: rgba(61, 160, 114, 0.5);
-  --success-ink: #1f5a40;
-  --neutral-soft: rgba(120, 140, 170, 0.18);
-  --neutral-border: rgba(120, 140, 170, 0.4);
-  --neutral-ink: #3e4a5a;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -41,11 +18,18 @@
 body {
   margin: 0;
   min-height: 100vh;
-  color: var(--ink);
+  color: var(--ink-primary);
   background:
-    radial-gradient(circle at 8% 12%, rgba(255, 245, 230, 0.9) 0%, rgba(255, 245, 230, 0) 58%),
-    radial-gradient(circle at 92% 18%, rgba(255, 224, 196, 0.7) 0%, rgba(255, 224, 196, 0) 58%),
-    linear-gradient(160deg, var(--bg-warm) 0%, var(--bg-deep) 70%);
+    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 88% 18%, rgba(233, 223, 209, 0.7) 0%, rgba(233, 223, 209, 0) 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(90, 75, 60, 0.03) 0,
+      rgba(90, 75, 60, 0.03) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    var(--paper-bg);
 }
 
 #root {
@@ -64,5 +48,5 @@ input {
 }
 
 ::selection {
-  background: rgba(242, 163, 108, 0.4);
+  background: var(--accent-soft);
 }
