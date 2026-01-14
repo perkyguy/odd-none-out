@@ -1,47 +1,269 @@
 [
   {
-    "id": "dog-breeds",
-    "words": ["Beagle", "Pug", "Collie", "Husky", "Terrier"],
+    "id": "fruits-common-01",
+    "difficulty": "easy",
+    "words": ["apple", "banana", "orange", "grape", "pear"],
     "category": {
-      "canonical": "Dog breeds",
-      "aliases": ["Dog breed", "Breeds of dogs", "Types of dogs"],
-      "concepts": ["dog"],
-      "matcher": {
-        "kind": "TYPES_OF",
-        "token": "dog breeds"
-      }
+      "canonical": "Fruits",
+      "aliases": ["Fruit", "Common fruits", "Fresh fruit", "Fruit names", "Kinds of fruit"]
     }
   },
   {
-    "id": "bread-after",
-    "words": ["basket", "winner", "line", "board", "crumb"],
+    "id": "vegetables-garden-01",
+    "difficulty": "easy",
+    "words": ["carrot", "broccoli", "spinach", "cucumber", "pepper"],
     "category": {
-      "canonical": "Words after bread",
-      "aliases": ["Bread ___"],
+      "canonical": "Vegetables",
+      "aliases": ["Vegetable", "Garden vegetables", "Veggie foods", "Vegetable names", "Common vegetables"]
+    }
+  },
+  {
+    "id": "colors-basic-01",
+    "difficulty": "easy",
+    "words": ["red", "blue", "green", "yellow", "orange"],
+    "category": {
+      "canonical": "Colors",
+      "aliases": ["Color", "Basic colors", "Color names", "Common colors", "Everyday colors"]
+    }
+  },
+  {
+    "id": "kitchen-utensils-01",
+    "difficulty": "easy",
+    "words": ["spatula", "whisk", "ladle", "tongs", "peeler"],
+    "category": {
+      "canonical": "Kitchen utensils",
+      "aliases": ["Cooking utensils", "Kitchen tools", "Cooking tools", "Utensils", "Tools for cooking"]
+    }
+  },
+  {
+    "id": "furniture-home-01",
+    "difficulty": "easy",
+    "words": ["chair", "table", "sofa", "dresser", "stool"],
+    "category": {
+      "canonical": "Furniture",
+      "aliases": ["Household furniture", "Home furniture", "Furniture pieces", "Room furniture", "Furniture items"]
+    }
+  },
+  {
+    "id": "farm-animals-01",
+    "difficulty": "easy",
+    "words": ["cow", "pig", "sheep", "goat", "horse"],
+    "category": {
+      "canonical": "Farm animals",
+      "aliases": ["Farm animal", "Barnyard animals", "Animals on a farm", "Barn animals", "Farm livestock"]
+    }
+  },
+  {
+    "id": "clothing-basics-01",
+    "difficulty": "easy",
+    "words": ["shirt", "jeans", "sweater", "jacket", "socks"],
+    "category": {
+      "canonical": "Clothing items",
+      "aliases": ["Clothes", "Articles of clothing", "Clothing pieces", "Wearable items", "Clothing basics"]
+    }
+  },
+  {
+    "id": "sports-team-01",
+    "difficulty": "easy",
+    "words": ["soccer", "tennis", "baseball", "basketball", "hockey"],
+    "category": {
+      "canonical": "Sports",
+      "aliases": ["Sport", "Team sports", "Sports games", "Popular sports", "Athletic sports"]
+    }
+  },
+  {
+    "id": "breakfast-foods-01",
+    "difficulty": "easy",
+    "words": ["cereal", "pancake", "oatmeal", "toast", "yogurt"],
+    "category": {
+      "canonical": "Breakfast foods",
+      "aliases": ["Breakfast food", "Morning foods", "Breakfast items", "Foods for breakfast", "Morning meal foods"]
+    }
+  },
+  {
+    "id": "shapes-basic-01",
+    "difficulty": "easy",
+    "words": ["circle", "square", "triangle", "rectangle", "oval"],
+    "category": {
+      "canonical": "Shapes",
+      "aliases": ["Basic shapes", "Geometric shapes", "Shape names", "Common shapes", "Simple shapes"]
+    }
+  },
+  {
+    "id": "weather-conditions-01",
+    "difficulty": "easy",
+    "words": ["rain", "snow", "hail", "fog", "wind"],
+    "category": {
+      "canonical": "Weather conditions",
+      "aliases": ["Weather types", "Weather", "Kinds of weather", "Common weather", "Weather events"]
+    }
+  },
+  {
+    "id": "tools-hand-01",
+    "difficulty": "easy",
+    "words": ["hammer", "saw", "wrench", "screwdriver", "pliers"],
+    "category": {
+      "canonical": "Hand tools",
+      "aliases": ["Tools", "Hand-held tools", "Toolbox tools", "Basic tools", "Tools for fixing"]
+    }
+  },
+  {
+    "id": "body-parts-01",
+    "difficulty": "easy",
+    "words": ["elbow", "knee", "ankle", "wrist", "shoulder"],
+    "category": {
+      "canonical": "Body parts",
+      "aliases": ["Body part", "Human body parts", "Parts of the body", "Body joints", "Body parts list"]
+    }
+  },
+  {
+    "id": "vehicles-common-01",
+    "difficulty": "easy",
+    "words": ["car", "bus", "truck", "bicycle", "train"],
+    "category": {
+      "canonical": "Vehicles",
+      "aliases": ["Vehicle", "Transportation", "Modes of transport", "Transport vehicles", "Ways to travel"]
+    }
+  },
+  {
+    "id": "pets-common-01",
+    "difficulty": "easy",
+    "words": ["dog", "cat", "fish", "rabbit", "hamster"],
+    "category": {
+      "canonical": "Pets",
+      "aliases": ["House pets", "Common pets", "Pet animals", "Domestic pets", "Pets at home"]
+    }
+  },
+  {
+    "id": "after-moon-01",
+    "difficulty": "medium",
+    "words": ["light", "beam", "walk", "stone", "rise"],
+    "category": {
+      "canonical": "Words after moon",
+      "aliases": ["Moon ___", "Words that follow moon", "Moon compounds", "Words after \"moon\"", "Moon word pairings"],
       "matcher": {
         "kind": "WORDS_AFTER",
-        "token": "bread",
+        "token": "moon",
         "acceptTokenAlone": true
       }
     }
   },
   {
-    "id": "types-of-birds",
-    "words": ["sparrow", "eagle", "owl", "pigeon", "heron"],
+    "id": "after-snow-01",
+    "difficulty": "medium",
+    "words": ["ball", "man", "fall", "bank", "drift"],
     "category": {
-      "canonical": "Types of birds",
-      "aliases": ["Kinds of birds"],
+      "canonical": "Words after snow",
+      "aliases": ["Snow ___", "Words that follow snow", "Snow compounds", "Words after \"snow\"", "Snow word pairings"],
       "matcher": {
-        "kind": "TYPES_OF",
-        "token": "bird"
+        "kind": "WORDS_AFTER",
+        "token": "snow",
+        "acceptTokenAlone": true
       }
     }
   },
   {
-    "id": "starts-re",
-    "words": ["redo", "replay", "remix", "rebuild", "resend"],
+    "id": "after-book-01",
+    "difficulty": "medium",
+    "words": ["mark", "shelf", "end", "store", "case"],
+    "category": {
+      "canonical": "Words after book",
+      "aliases": ["Book ___", "Words that follow book", "Book compounds", "Words after \"book\"", "Book word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "book",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "after-head-01",
+    "difficulty": "medium",
+    "words": ["ache", "line", "light", "band", "phones"],
+    "category": {
+      "canonical": "Words after head",
+      "aliases": ["Head ___", "Words that follow head", "Head compounds", "Words after \"head\"", "Head word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "head",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "after-time-01",
+    "difficulty": "medium",
+    "words": ["line", "table", "zone", "keeper", "piece"],
+    "category": {
+      "canonical": "Words after time",
+      "aliases": ["Time ___", "Words that follow time", "Time compounds", "Words after \"time\"", "Time word pairings"],
+      "matcher": {
+        "kind": "WORDS_AFTER",
+        "token": "time",
+        "acceptTokenAlone": true
+      }
+    }
+  },
+  {
+    "id": "types-dog-breeds-01",
+    "difficulty": "medium",
+    "words": ["beagle", "pug", "collie", "husky", "terrier"],
+    "category": {
+      "canonical": "Dog breeds",
+      "aliases": ["Dog breed", "Breeds of dogs", "Types of dogs", "Kinds of dog breeds", "Dog breed types"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "dog breeds"
+      },
+      "concepts": ["dog"]
+    }
+  },
+  {
+    "id": "types-trees-01",
+    "difficulty": "medium",
+    "words": ["maple", "oak", "pine", "birch", "cedar"],
+    "category": {
+      "canonical": "Types of trees",
+      "aliases": ["Tree types", "Kinds of trees", "Tree species", "Tree varieties", "Tree kinds"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "trees"
+      }
+    }
+  },
+  {
+    "id": "types-cheeses-01",
+    "difficulty": "medium",
+    "words": ["cheddar", "brie", "gouda", "feta", "mozzarella"],
+    "category": {
+      "canonical": "Types of cheese",
+      "aliases": ["Cheese types", "Kinds of cheese", "Cheese varieties", "Cheese kinds", "Cheese list"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "cheeses"
+      }
+    }
+  },
+  {
+    "id": "types-pasta-shapes-01",
+    "difficulty": "medium",
+    "words": ["penne", "fusilli", "rigatoni", "linguine", "farfalle"],
+    "category": {
+      "canonical": "Pasta shapes",
+      "aliases": ["Types of pasta", "Pasta types", "Pasta varieties", "Kinds of pasta", "Pasta shapes list"],
+      "matcher": {
+        "kind": "TYPES_OF",
+        "token": "pasta shapes"
+      }
+    }
+  },
+  {
+    "id": "starts-re-01",
+    "difficulty": "medium",
+    "words": ["rebuild", "remix", "reread", "recycle", "retake"],
     "category": {
       "canonical": "Words starting with re",
+      "aliases": ["Starts with re", "Words that start with re", "Re- words", "Beginning with re", "Words beginning with re"],
       "matcher": {
         "kind": "STARTS_WITH",
         "token": "re"
@@ -49,10 +271,12 @@
     }
   },
   {
-    "id": "ends-tion",
-    "words": ["action", "station", "nation", "fiction", "motion"],
+    "id": "ends-tion-01",
+    "difficulty": "medium",
+    "words": ["action", "station", "nation", "motion", "fiction"],
     "category": {
       "canonical": "Words ending with tion",
+      "aliases": ["Ends with tion", "Words ending in tion", "Tion-ending words", "Words that end with tion", "Ending with tion"],
       "matcher": {
         "kind": "ENDS_WITH",
         "token": "tion"
@@ -60,72 +284,133 @@
     }
   },
   {
-    "id": "sun-after",
-    "words": ["rise", "set", "burn", "flower", "light"],
+    "id": "ends-ing-01",
+    "difficulty": "medium",
+    "words": ["running", "baking", "singing", "painting", "writing"],
     "category": {
-      "canonical": "Words after sun",
-      "matcher": {
-        "kind": "WORDS_AFTER",
-        "token": "sun"
-      }
-    }
-  },
-  {
-    "id": "types-of-cheese",
-    "words": ["cheddar", "brie", "gouda", "feta", "mozzarella"],
-    "category": {
-      "canonical": "Types of cheese",
-      "aliases": ["Kinds of cheese"],
-      "matcher": {
-        "kind": "TYPES_OF",
-        "token": "cheese"
-      }
-    }
-  },
-  {
-    "id": "starts-un",
-    "words": ["undo", "unlock", "unwind", "unplug", "unwrap"],
-    "category": {
-      "canonical": "Words starting with un",
-      "matcher": {
-        "kind": "STARTS_WITH",
-        "token": "un"
-      }
-    }
-  },
-  {
-    "id": "ends-ment",
-    "words": ["payment", "movement", "shipment", "segment", "statement"],
-    "category": {
-      "canonical": "Words ending with ment",
+      "canonical": "Words ending with ing",
+      "aliases": ["Ends with ing", "Words ending in ing", "Ing-ending words", "Words that end with ing", "Ending with ing"],
       "matcher": {
         "kind": "ENDS_WITH",
-        "token": "ment"
+        "token": "ing"
       }
     }
   },
   {
-    "id": "noble-gases",
-    "words": ["helium", "neon", "argon", "krypton", "xenon"],
+    "id": "animal-object-words-01",
+    "difficulty": "medium",
+    "words": ["bat", "crane", "seal", "mouse", "mole"],
     "category": {
-      "canonical": "Noble gases",
-      "aliases": ["Noble gas", "Inert gases"]
+      "canonical": "Animal names that are also objects",
+      "aliases": ["Animal/object words", "Animals that are also things", "Animals that are objects", "Animal names used for objects", "Animal names as objects"]
     }
   },
   {
-    "id": "weekdays",
-    "words": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "id": "foods-are-colors-01",
+    "difficulty": "medium",
+    "words": ["orange", "peach", "plum", "olive", "mustard"],
     "category": {
-      "canonical": "Weekdays",
-      "aliases": ["Workdays", "Week days"]
+      "canonical": "Foods that are also colors",
+      "aliases": ["Food color words", "Foods used as colors", "Edible color names", "Foods that name colors", "Color names from foods"]
     }
   },
   {
-    "id": "greek-letters",
-    "words": ["alpha", "beta", "gamma", "delta", "epsilon"],
+    "id": "baked-goods-01",
+    "difficulty": "medium",
+    "words": ["bread", "muffin", "cookie", "croissant", "pie"],
     "category": {
-      "canonical": "Greek letters",
-      "aliases": ["Greek alphabet letters"]
+      "canonical": "Baked goods",
+      "aliases": ["Baked items", "Bakery goods", "Baked treats", "Baked foods", "Bakery items"]
+    }
+  },
+  {
+    "id": "palindromes-01",
+    "difficulty": "hard",
+    "words": ["level", "radar", "civic", "rotor", "kayak"],
+    "category": {
+      "canonical": "Palindromes",
+      "aliases": ["Palindrome words", "Words spelled the same backward", "Mirror words", "Backward words", "Palindrome list"]
+    }
+  },
+  {
+    "id": "silent-letters-01",
+    "difficulty": "hard",
+    "words": ["gnome", "lamb", "whistle", "island", "knight"],
+    "category": {
+      "canonical": "Words with silent letters",
+      "aliases": ["Silent letter words", "Words with a silent letter", "Silent-letter words", "Words containing silent letters", "Silent letters"]
+    }
+  },
+  {
+    "id": "compound-animals-01",
+    "difficulty": "hard",
+    "words": ["butterfly", "ladybug", "catfish", "bullfrog", "seahorse"],
+    "category": {
+      "canonical": "Compound animal words",
+      "aliases": ["Animal compound words", "Animals with two words", "Compound animal names", "Two-word animals", "Animal compounds"]
+    }
+  },
+  {
+    "id": "noun-verb-words-01",
+    "difficulty": "hard",
+    "words": ["play", "watch", "drink", "dance", "phone"],
+    "category": {
+      "canonical": "Words that are both nouns and verbs",
+      "aliases": ["Noun and verb words", "Words that are noun and verb", "Dual-use words", "Words used as noun and verb", "Noun/verb words"]
+    }
+  },
+  {
+    "id": "tool-verbs-01",
+    "difficulty": "hard",
+    "words": ["hammer", "saw", "drill", "plane", "file"],
+    "category": {
+      "canonical": "Tools that are also verbs",
+      "aliases": ["Tool verbs", "Tools used as verbs", "Tools you can do", "Tool action words", "Tool names as verbs"]
+    }
+  },
+  {
+    "id": "body-part-verbs-01",
+    "difficulty": "hard",
+    "words": ["hand", "arm", "back", "shoulder", "head"],
+    "category": {
+      "canonical": "Body parts used as verbs",
+      "aliases": ["Body part verbs", "Body parts that are verbs", "Verbs that are body parts", "Body-part action words", "Body parts as verbs"]
+    }
+  },
+  {
+    "id": "no-vowel-words-01",
+    "difficulty": "hard",
+    "words": ["myth", "rhythm", "crypt", "lynx", "hymn"],
+    "category": {
+      "canonical": "Words without traditional vowels",
+      "aliases": ["Words without A E I O U", "No-vowel words", "Words without vowels", "Vowel-less words", "Words lacking vowels"]
+    }
+  },
+  {
+    "id": "double-letter-words-01",
+    "difficulty": "hard",
+    "words": ["balloon", "coffee", "puzzle", "apple", "letter"],
+    "category": {
+      "canonical": "Words with double letters",
+      "aliases": ["Double-letter words", "Words with a double letter", "Words containing double letters", "Double letters", "Words with repeating letters"]
+    }
+  },
+  {
+    "id": "silent-e-words-01",
+    "difficulty": "hard",
+    "words": ["bake", "rope", "cube", "time", "mine"],
+    "category": {
+      "canonical": "Words with silent e",
+      "aliases": ["Silent e words", "Words ending with silent e", "Magic e words", "Words with a silent e", "Silent-e words"]
+    }
+  },
+  {
+    "id": "number-homophones-01",
+    "difficulty": "hard",
+    "words": ["won", "too", "for", "ate", "fore"],
+    "category": {
+      "canonical": "Words that sound like numbers",
+      "aliases": ["Number homophones", "Words that sound like a number", "Number sound-alikes", "Number-sounding words", "Homophones of numbers"]
     }
   }
 ]
