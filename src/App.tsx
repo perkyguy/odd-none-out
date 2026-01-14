@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import './App.css'
+import { IconMark } from './components/IconMark'
 import { getMatchDebug, isMatch, type MatchDebug } from './lib/match'
 import { loadRandomPuzzle } from './lib/puzzles'
 import type { Puzzle } from './lib/types'
@@ -54,6 +55,7 @@ function App() {
   const words = puzzle?.words ?? []
   const allRevealed = puzzle ? revealedCount >= puzzle.words.length : false
   const roundOver = status === 'correct' || (status === 'incorrect' && allRevealed)
+  const nextButtonClass = roundOver ? 'primary' : 'secondary'
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -86,7 +88,7 @@ function App() {
     <div className="app">
       <header className="app-hero">
         <div className="app-brand">
-          <span className="brand-mark" aria-hidden="true" />
+          <IconMark className="brand-icon" />
           <div className="brand-text">
             <h1 className="brand-title">Odd None Out</h1>
             <p className="app-tagline">Spot the hidden category.</p>
@@ -130,22 +132,31 @@ function App() {
           )}
 
           {!loading && !error && status === 'correct' && puzzle && (
-            <div className="status success">
-              <strong>Correct.</strong> The category is{' '}
-              <span className="category-name">{puzzle.category.canonical}</span>.
+            <div className="status status--win">
+              <span className="status-badge status-badge--win">You got it!</span>
+              <p className="status-text">
+                <strong>Correct.</strong> The category is{' '}
+                <span className="category-name">{puzzle.category.canonical}</span>.
+              </p>
             </div>
           )}
 
           {!loading && !error && status === 'incorrect' && allRevealed && puzzle && (
-            <div className="status warning">
-              <strong>Out of guesses.</strong> The category was{' '}
-              <span className="category-name">{puzzle.category.canonical}</span>.
+            <div className="status status--lose">
+              <span className="status-badge status-badge--lose">Round over</span>
+              <p className="status-text">
+                <strong>Out of guesses.</strong> The category was{' '}
+                <span className="category-name">{puzzle.category.canonical}</span>.
+              </p>
             </div>
           )}
 
           {!loading && !error && status === 'incorrect' && !allRevealed && (
-            <div className="status warning">
-              Not quite. Revealing the next word.
+            <div className="status status--playing">
+              <span className="status-badge status-badge--playing">
+                Not quite
+              </span>
+              <p className="status-text">Revealing the next word.</p>
             </div>
           )}
         </section>
@@ -173,13 +184,13 @@ function App() {
                 >
                   Submit
                 </button>
-                <button
-                  className="secondary"
-                  type="button"
-                  onClick={() => startNewPuzzle(puzzle?.id)}
-                  disabled={loading}
-                >
-                  Next Puzzle
+              <button
+                className={nextButtonClass}
+                type="button"
+                onClick={() => startNewPuzzle(puzzle?.id)}
+                disabled={loading}
+              >
+                Next Puzzle
                 </button>
               </div>
             </form>
