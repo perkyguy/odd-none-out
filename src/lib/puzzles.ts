@@ -11,11 +11,20 @@ export async function loadPuzzles(): Promise<Puzzle[]> {
   return data
 }
 
-export async function loadRandomPuzzle(): Promise<Puzzle> {
+export async function loadRandomPuzzle(
+  excludeId?: string | null,
+): Promise<Puzzle> {
   const puzzles = await loadPuzzles()
   if (!puzzles.length) {
     throw new Error('No puzzles available')
   }
-  const index = Math.floor(Math.random() * puzzles.length)
-  return puzzles[index]
+  let candidates = puzzles
+  if (excludeId && puzzles.length > 1) {
+    const filtered = puzzles.filter((puzzle) => puzzle.id !== excludeId)
+    if (filtered.length) {
+      candidates = filtered
+    }
+  }
+  const index = Math.floor(Math.random() * candidates.length)
+  return candidates[index]
 }

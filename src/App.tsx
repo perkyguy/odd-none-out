@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import './App.css'
 import { getMatchDebug, isMatch, type MatchDebug } from './lib/match'
@@ -9,6 +9,7 @@ type GuessStatus = 'idle' | 'correct' | 'incorrect'
 
 function App() {
   const isDev = import.meta.env.DEV
+  const isMounted = useRef(true)
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null)
   const [revealedCount, setRevealedCount] = useState(1)
   const [guess, setGuess] = useState('')
@@ -17,46 +18,47 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [debugInfo, setDebugInfo] = useState<MatchDebug | null>(null)
 
-  useEffect(() => {
-    let active = true
-
-    const loadPuzzle = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const nextPuzzle = await loadRandomPuzzle()
-        if (!active) {
-          return
-        }
-        setPuzzle(nextPuzzle)
-        setRevealedCount(1)
-        setGuess('')
-        setStatus('idle')
-        setDebugInfo(null)
-      } catch (loadError) {
-        if (active) {
-          setError('Could not load a puzzle. Try refreshing.')
-        }
-      } finally {
-        if (active) {
-          setLoading(false)
-        }
+  const startNewPuzzle = useCallback(async (excludeId?: string | null) => {
+    setLoading(true)
+    setError(null)
+    try {
+      const nextPuzzle = await loadRandomPuzzle(excludeId)
+      if (!isMounted.current) {
+        return
       }
-    }
-
-    loadPuzzle()
-
-    return () => {
-      active = false
+      setPuzzle(nextPuzzle)
+      setRevealedCount(1)
+      setGuess('')
+      setStatus('idle')
+      setDebugInfo(null)
+    } catch (loadError) {
+      if (isMounted.current) {
+        setError('Could not load a puzzle. Try refreshing.')
+      }
+    } finally {
+      if (isMounted.current) {
+        setLoading(false)
+      }
     }
   }, [])
 
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+
+  useEffect(() => {
+    startNewPuzzle()
+  }, [startNewPuzzle])
+
   const words = puzzle?.words ?? []
   const allRevealed = puzzle ? revealedCount >= puzzle.words.length : false
+  const roundOver = status === 'correct' || (status === 'incorrect' && allRevealed)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!puzzle || status === 'correct') {
+    if (!puzzle || roundOver) {
       return
     }
     const trimmedGuess = guess.trim()
@@ -75,23 +77,19 @@ function App() {
       setRevealedCount(puzzle.words.length)
     } else {
       setStatus('incorrect')
+      setRevealedCount((count) =>
+        Math.min(count + 1, puzzle.words.length),
+      )
     }
-  }
-
-  const handleRevealNext = () => {
-    if (!puzzle || status !== 'incorrect') {
-      return
-    }
-    setRevealedCount((count) =>
-      Math.min(count + 1, puzzle.words.length),
-    )
-    setStatus('idle')
   }
 
   return (
     <div className="app">
       <header className="app-header">
-        <p className="app-eyebrow">Odd None Out</p>
+        <div className="app-brand">
+          <span className="brand-mark" aria-hidden="true" />
+          <span>Odd None Out</span>
+        </div>
         <h1>Spot the hidden category.</h1>
         <p className="app-subtitle">
           Reveal words, take a guess, and see if you can name the group.
@@ -136,8 +134,17 @@ function App() {
             </div>
           )}
 
-          {!loading && !error && status === 'incorrect' && (
-            <div className="status warning">Not quite. Try again.</div>
+          {!loading && !error && status === 'incorrect' && allRevealed && puzzle && (
+            <div className="status warning">
+              <strong>Out of guesses.</strong> The category was{' '}
+              <span className="category-name">{puzzle.category.canonical}</span>.
+            </div>
+          )}
+
+          {!loading && !error && status === 'incorrect' && !allRevealed && (
+            <div className="status warning">
+              Not quite. Revealing the next word.
+            </div>
           )}
         </section>
 
@@ -155,29 +162,29 @@ function App() {
                 value={guess}
                 onChange={(event) => setGuess(event.target.value)}
                 placeholder="e.g. Words after bread"
-                disabled={!puzzle || loading || status === 'correct'}
+                disabled={!puzzle || loading || roundOver}
               />
               <button
                 className="primary"
                 type="submit"
-                disabled={!puzzle || loading || status === 'correct'}
+                disabled={!puzzle || loading || roundOver}
               >
                 Submit
+              </button>
+              <button
+                className="secondary"
+                type="button"
+                onClick={() => startNewPuzzle(puzzle?.id)}
+                disabled={loading}
+              >
+                Next Puzzle
               </button>
             </div>
           </form>
 
           <div className="guess-actions">
-            <button
-              className="secondary"
-              type="button"
-              onClick={handleRevealNext}
-              disabled={!puzzle || status !== 'incorrect' || allRevealed}
-            >
-              Reveal next word
-            </button>
             <p className="hint">
-              Incorrect guesses unlock one more word. Keep narrowing the category.
+              Every miss reveals one more word. Keep narrowing the category.
             </p>
           </div>
 
