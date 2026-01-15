@@ -2,11 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import './App.css'
 import { IconMark } from './components/IconMark'
+import { applyIncorrectGuess, type GuessStatus } from './lib/game'
 import { getMatchDebug, isMatch, type MatchDebug } from './lib/match'
 import { loadRandomPuzzle } from './lib/puzzles'
 import type { Puzzle } from './lib/types'
-
-type GuessStatus = 'idle' | 'correct' | 'incorrect'
 
 function App() {
   const isDev = import.meta.env.DEV
@@ -56,16 +55,16 @@ function App() {
   }, [startNewPuzzle])
 
   const words = puzzle?.words ?? []
-  const allRevealed = puzzle ? revealedCount >= puzzle.words.length : false
-  const roundOver = status === 'correct' || (status === 'incorrect' && allRevealed)
   const isWin = status === 'correct'
-  const isLose = status === 'incorrect' && allRevealed
-  const isWarning = status === 'incorrect' && !allRevealed
+  const isLose = status === 'lost'
+  const isLastChance = status === 'last'
+  const isWarning = status === 'incorrect'
+  const roundOver = isWin || isLose
   const statusVariant = isWin
     ? 'win'
     : isLose
       ? 'lose'
-      : isWarning
+      : isWarning || isLastChance
         ? 'warning'
         : 'playing'
   const statusCategory = puzzle && (isWin || isLose) ? puzzle.category.canonical : null
@@ -80,6 +79,9 @@ function App() {
   } else if (isLose) {
     statusTitle = 'Round over'
     statusMessage = 'No worries. Try a fresh puzzle when you want.'
+  } else if (isLastChance) {
+    statusTitle = 'Last chance'
+    statusMessage = 'One more guess with all the words revealed.'
   } else if (isWarning) {
     statusTitle = 'Not quite'
     statusMessage = 'Another word appears to help.'
@@ -105,10 +107,12 @@ function App() {
       setStatus('correct')
       setRevealedCount(puzzle.words.length)
     } else {
-      setStatus('incorrect')
-      setRevealedCount((count) =>
-        Math.min(count + 1, puzzle.words.length),
+      const nextState = applyIncorrectGuess(
+        revealedCount,
+        puzzle.words.length,
       )
+      setStatus(nextState.status)
+      setRevealedCount(nextState.revealedCount)
     }
   }
 
