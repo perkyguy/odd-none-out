@@ -52,6 +52,18 @@ describe('isMatch', () => {
     expect(isMatch('bread', category)).toBe(true)
   })
 
+  it('accepts related concepts for single-token guesses only', () => {
+    const category: Category = {
+      canonical: 'Things you can fold',
+      aliases: ['Foldable things', 'Items you fold'],
+      relatedConcepts: ['roll'],
+    }
+
+    expect(isMatch('roll', category)).toBe(true)
+    expect(isMatch('wrapping paper', category)).toBe(false)
+    expect(isMatch('things', category)).toBe(false)
+  })
+
   it('matches starts with re against words starting with re', () => {
     const category: Category = {
       canonical: 'Words starting with re',

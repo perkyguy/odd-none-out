@@ -1,6 +1,12 @@
 import type { Category, CategoryMatcher } from './types'
 
-export type MatchReason = 'canonical' | 'alias' | 'matcher' | 'concept' | 'none'
+export type MatchReason =
+  | 'canonical'
+  | 'alias'
+  | 'matcher'
+  | 'related'
+  | 'concept'
+  | 'none'
 
 export type MatchDebug = {
   matched: boolean
@@ -115,6 +121,7 @@ export function getMatchDebug(guess: string, category: Category): MatchDebug {
     ? matcherPatterns(category.matcher)
     : undefined
   const conceptDetails = getConceptMatchDetails(normalizedGuess, category)
+  const relatedMatched = relatedConceptMatch(normalizedGuess, category)
 
   let matched = false
   let reason: MatchReason = 'none'
@@ -133,6 +140,9 @@ export function getMatchDebug(guess: string, category: Category): MatchDebug {
     ) {
       matched = true
       reason = 'matcher'
+    } else if (relatedMatched) {
+      matched = true
+      reason = 'related'
     } else if (conceptDetails.matched) {
       matched = true
       reason = 'concept'
@@ -157,6 +167,30 @@ type ConceptMatchDetails = {
   categoryTokens: string[]
   hitCount: number
   requiredHits: number
+}
+
+function relatedConceptMatch(
+  normalizedGuess: string,
+  category: Category,
+): boolean {
+  if (!category.relatedConcepts?.length) {
+    return false
+  }
+
+  const guessTokens = filterConceptTokens(tokenizeNormalized(normalizedGuess))
+  if (guessTokens.length !== 1) {
+    return false
+  }
+
+  const relatedTokens = new Set<string>()
+  category.relatedConcepts.forEach((concept) => {
+    const tokens = filterConceptTokens(tokenizeNormalized(normalize(concept)))
+    if (tokens.length === 1) {
+      relatedTokens.add(tokens[0])
+    }
+  })
+
+  return relatedTokens.has(guessTokens[0])
 }
 
 function getConceptMatchDetails(

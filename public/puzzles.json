@@ -419,7 +419,8 @@
     "words": ["paper", "map", "towel", "chair", "blanket"],
     "category": {
       "canonical": "Things you can fold",
-      "aliases": ["Foldable things", "Things that fold", "Items you can fold", "Things that can be folded", "Fold-up items"]
+      "aliases": ["Things you can fold", "Foldable things", "Items you fold", "Things that fold", "Things that can be folded"],
+      "relatedConcepts": ["roll", "wrap", "crease"]
     }
   },
   {

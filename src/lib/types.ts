@@ -22,6 +22,7 @@ export type Category = {
   canonical: string
   aliases?: string[]
   concepts?: string[]
+  relatedConcepts?: string[]
   matcher?: CategoryMatcher
 }
 
