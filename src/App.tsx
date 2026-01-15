@@ -121,6 +121,46 @@ function App() {
     }
   }
 
+  const statusPanelBody = (
+    <>
+      <div className="status-header">
+        <span className="status-chip">{statusTitle}</span>
+        {statusCategory && (
+          <span className="status-category-label">Category</span>
+        )}
+      </div>
+      {statusCategory && <p className="status-category">{statusCategory}</p>}
+      <p className="status-text status-text--full">{statusMessage}</p>
+      <p className="status-text status-text--compact">
+        {statusMessageCompact}
+      </p>
+      <div className="status-actions">
+        <button
+          className={nextButtonClass}
+          type="button"
+          onClick={() => startNewPuzzle(puzzle?.id)}
+          disabled={!canLoadNext}
+        >
+          Next Puzzle
+        </button>
+      </div>
+    </>
+  )
+
+  const statusPanel = !loading && !error && (
+    <section className={`status-panel status-panel--${statusVariant}`}>
+      {statusPanelBody}
+    </section>
+  )
+
+  const compactStatusPanel = !loading && !error && (
+    <section
+      className={`status-panel status-panel--compact status-panel--${statusVariant}`}
+    >
+      {statusPanelBody}
+    </section>
+  )
+
   return (
     <div className={`app${isWin ? ' is-win' : ''}`}>
       <header className="app-hero">
@@ -195,6 +235,7 @@ function App() {
                   value={guess}
                   onChange={(event) => setGuess(event.target.value)}
                   placeholder="e.g. Words after bread"
+                  aria-label="Guess the category"
                   disabled={!puzzle || loading || roundOver}
                 />
                 <button
@@ -206,6 +247,8 @@ function App() {
                 </button>
               </div>
             </form>
+
+            {compactStatusPanel}
 
             <div className="guess-actions">
               <p className="hint">
@@ -239,33 +282,7 @@ function App() {
           </section>
         </main>
 
-        {!loading && !error && (
-          <section className={`status-panel status-panel--${statusVariant}`}>
-            <div className="status-header">
-              <span className="status-chip">{statusTitle}</span>
-              {statusCategory && (
-                <span className="status-category-label">Category</span>
-              )}
-            </div>
-            {statusCategory && (
-              <p className="status-category">{statusCategory}</p>
-            )}
-            <p className="status-text status-text--full">{statusMessage}</p>
-            <p className="status-text status-text--compact">
-              {statusMessageCompact}
-            </p>
-            <div className="status-actions">
-              <button
-                className={nextButtonClass}
-                type="button"
-                onClick={() => startNewPuzzle(puzzle?.id)}
-                disabled={!canLoadNext}
-              >
-                Next Puzzle
-              </button>
-            </div>
-          </section>
-        )}
+        {statusPanel}
       </section>
     </div>
   )

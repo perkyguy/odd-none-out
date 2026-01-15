@@ -380,6 +380,10 @@
   color: inherit;
 }
 
+.status-panel--compact {
+  display: none;
+}
+
 .status-text--compact {
   display: none;
 }
@@ -662,6 +666,12 @@
     gap: 0.6rem;
   }
 
+  .guess-panel h2,
+  .guess-label,
+  .hint {
+    display: none;
+  }
+
   .guess-form {
     gap: 0.45rem;
   }
@@ -672,16 +682,31 @@
 
   .guess-controls {
     gap: 0.4rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
   }
 
   .guess-controls input {
+    flex: 1 1 auto;
     padding: 0.45rem 0.2rem;
     font-size: 1rem;
     min-height: 44px;
+    width: auto;
   }
 
   .guess-controls button {
+    flex: 0 0 auto;
     padding: 0.55rem 1.1rem;
+    width: auto;
+  }
+
+  .game-card > .status-panel:not(.status-panel--compact) {
+    display: none;
+  }
+
+  .status-panel--compact {
+    display: flex;
   }
 
   .status-panel {
