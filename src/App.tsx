@@ -68,23 +68,28 @@ function App() {
         ? 'warning'
         : 'playing'
   const statusCategory = puzzle && (isWin || isLose) ? puzzle.category.canonical : null
-  const nextButtonClass = isWin ? 'primary' : 'secondary'
+  const nextButtonClass = isWin || isLose ? 'primary' : 'secondary'
   const canLoadNext = !loading && !error
 
   let statusTitle = 'Ready when you are'
   let statusMessage = 'Make a guess when the words start to click.'
+  let statusMessageCompact = 'Take a guess.'
   if (isWin) {
     statusTitle = 'You solved it'
     statusMessage = 'Nicely spotted. Ready for the next one?'
+    statusMessageCompact = 'Ready for another?'
   } else if (isLose) {
     statusTitle = 'Round over'
     statusMessage = 'No worries. Try a fresh puzzle when you want.'
+    statusMessageCompact = 'Try a new puzzle.'
   } else if (isLastChance) {
     statusTitle = 'Last chance'
     statusMessage = 'One more guess with all the words revealed.'
+    statusMessageCompact = 'One more guess.'
   } else if (isWarning) {
     statusTitle = 'Not quite'
     statusMessage = 'Another word appears to help.'
+    statusMessageCompact = 'Another word appears.'
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -245,7 +250,20 @@ function App() {
             {statusCategory && (
               <p className="status-category">{statusCategory}</p>
             )}
-            <p className="status-text">{statusMessage}</p>
+            <p className="status-text status-text--full">{statusMessage}</p>
+            <p className="status-text status-text--compact">
+              {statusMessageCompact}
+            </p>
+            <div className="status-actions">
+              <button
+                className={nextButtonClass}
+                type="button"
+                onClick={() => startNewPuzzle(puzzle?.id)}
+                disabled={!canLoadNext}
+              >
+                Next Puzzle
+              </button>
+            </div>
           </section>
         )}
       </section>
